@@ -7,6 +7,10 @@ use QuantumForms\FormElements\Input;
 use QuantumForms\Validators\Integer;
 use QuantumForms\Validators\Alphanumeric;
 
+/**
+ * Example Use of QuantumForms
+ */
+
 // instantiate the loader
 require_once 'Autoloader.php';
 $loader = new Autoloader;
@@ -29,7 +33,7 @@ $nameElement = new Input('name');
 $nameElement->setValidators([new Alphanumeric()]);
 $form->addElement($nameElement);
 
-echo '<html><head><script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>';
+echo '<html><head>';
 echo $form->renderJavascript();
 echo '</head><body>';
 echo $form->renderHtml();

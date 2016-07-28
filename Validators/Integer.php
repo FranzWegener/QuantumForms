@@ -3,7 +3,11 @@ namespace QuantumForms\Validators;
 
 use QuantumForms\Validator;
 use QuantumForms\ValidatorInterface;
-
+/**
+ * Validator that checks if the input is integer
+ * @author Franz Wegener
+ *
+ */
 class Integer extends AbstractValidator implements ValidatorInterface
 {
     

@@ -1,6 +1,10 @@
 <?php
 namespace QuantumForms;
-
+/**
+ * Interface for Validators
+ * @author Franz Wegener
+ *
+ */
 interface ValidatorInterface
 {
     /**

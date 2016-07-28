@@ -6,6 +6,11 @@ use QuantumForms\Config\Names;
 use QuantumForms\JsErrorNotifierInterface;
 use QuantumForms\FormElementInterface;
 
+/**
+ * The main Form class into which the FormElements get injected 
+ * @author Franz Wegener
+ *
+ */
 class Form implements \QuantumForms\FormInterface
 {
     protected $method;
@@ -17,6 +22,12 @@ class Form implements \QuantumForms\FormInterface
     protected $jsErrorNotifier;
     protected $jqueryAvailable = false;
     
+    /**
+     * 
+     * @param string $method Form method
+     * @param string $action Form action
+     * @param JsErrorNotifierInterface $jsErrorNotifier
+     */
     public function __construct($method, $action, JsErrorNotifierInterface $jsErrorNotifier)
     {    
     	if (!is_string($method) || !is_String($action)) throw Exception('The parameters $method and $action of QuantumForms\FormInterface::__construct() must be strings.');

@@ -1,6 +1,10 @@
 <?php
 namespace QuantumForms;
-
+/**
+ * Interface for FormElements
+ * @author Franz Wegener
+ *
+ */
 interface FormElementInterface
 {
     public function __construct($name);

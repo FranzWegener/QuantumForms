@@ -1,6 +1,10 @@
 <?php
 namespace QuantumForms;
-
+/**
+ * Interface for JsErrorNotifiers
+ * @author Franz Wegener
+ *
+ */
 interface JsErrorNotifierInterface
 {
     /**

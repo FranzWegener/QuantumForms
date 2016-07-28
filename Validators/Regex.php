@@ -3,7 +3,11 @@ namespace QuantumForms\Validators;
 
 use QuantumForms\Validator;
 use QuantumForms\ValidatorInterface;
-
+/**
+ * Validator that checks if the input matches a regex that can be set freely
+ * @author Franz Wegener
+ *
+ */
 class Regex extends AbstractValidator implements ValidatorInterface
 {   
     protected $regex;

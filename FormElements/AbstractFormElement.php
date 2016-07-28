@@ -3,6 +3,12 @@
 namespace QuantumForms\FormElements; 
 
 use QuantumForms\ValidatorInterface;
+
+/**
+ * All basic functions of FormElements
+ * @author Franz Wegener
+ *
+ */
 abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
 {
     const NAME_ATTRIBUTE = 'name';

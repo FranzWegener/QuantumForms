@@ -3,7 +3,11 @@ namespace QuantumForms\Validators;
 
 use QuantumForms\Validator;
 use QuantumForms\ValidatorInterface;
-
+/**
+ * Validator that checks if the input is alphanumeric
+ * @author Franz Wegener
+ *
+ */
 class Alphanumeric extends AbstractValidator implements ValidatorInterface
 {
     

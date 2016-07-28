@@ -3,20 +3,39 @@ namespace QuantumForms;
 /**
  * QuantumForms
  * --------
- * = frontend and backend validation combined
- * - standalone: few to no dependencies (only JQuery right now), because I want to be framework independent and don't want to have to manage changes in dependencies (jQuery is okay, because it wraps changes in browsers)
+ * QuantumForms is a FormBuilder that uses the same validators in frontend and backend.
+ * - standalone: no dependencies, so it is framework independent and no dependency management is needed
  * - easy to use and easy to extend
- * - low bandwith (only the validators you use should be transmitted to client-side)
+ *   - add a validator by adding a class to the Validators directory (all validators include the frontend and backend part)
+ *   - add a Javascript Form Error handler by adding a js-closure to JsErrorNotifiers
+ *   - add new type of FormElements by adding a class to the FormElementsDirectory
+ *   - exchange the Form-builder itself by adding to the Forms directory 
+ * - low bandwith (only the validators you use are transmitted to client-side)
  * - PSR4
  * 
- * @author non-admin
+ * @author Franz Wegener
  *
  */
 interface FormInterface
 {
+    /**
+     * Constructor
+     * @param string $method Form method
+     * @param string $action Form action
+     * @param JsErrorNotifierInterface $jsErrorNotifier
+     */
     public function __construct($method, $action, JsErrorNotifierInterface $jsErrorNotifier);
     
+    /**
+     * Add attribute to <form> tag
+     * @param string $name
+     * @param string $value
+     */
     public function addAttribute($name, $value);
+    /**
+     * Set all attributes to <form> tag
+     * @param array $attributes
+     */
     public function setAttributes(array $attributes);
     /**
      * Add a FormElement
