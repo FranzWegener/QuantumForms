@@ -88,11 +88,19 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
     	}
     	return true;
     }
+    
+    /**
+     * (non-PHPdoc)
+     * @see \QuantumForms\FormElementInterface::getValidators()
+     */
     public function getValidators()
     {
     	return $this->validators;
     }
-    
+    /**
+     * Returns all attributes as string
+     * @return string
+     */
     protected function getAttributesString()
     {
         $result = [];
