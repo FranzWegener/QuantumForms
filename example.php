@@ -1,7 +1,7 @@
 <?php
 use QuantumForms\Forms\Form;
 use QuantumForms\JsErrorNotifiers\Alert;
-use QuantumForms\FormElements\Input;
+use QuantumForms\FormElements\TextInput;
 use QuantumForms\Validators\Integer;
 use QuantumForms\Validators\Alphanumeric;
 use QuantumForms\Autoloader;
@@ -25,11 +25,11 @@ $loader->addNamespace('QuantumForms', __DIR__.'/src');
 
 $form = new Form('GET', '/', new Alert());
 
-$ageElement = new Input('age');
+$ageElement = new TextInput('age');
 $ageElement->setValidators([new Integer()]);
 $form->addElement($ageElement);
 
-$nameElement = new Input('name');
+$nameElement = new TextInput('name');
 $nameElement->setValidators([new Alphanumeric()]);
 $form->addElement($nameElement);
 

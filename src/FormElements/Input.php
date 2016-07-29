@@ -12,5 +12,13 @@ class Input extends AbstractFormElement implements \Quantumforms\FormElementInte
     {
         $attributes = $this->getAttributesString();
     	return $this->htmlBefore.'<input '.$attributes.'/>'.$this->htmlAfter;
+    }
+    /**
+     * Sets the type of the input
+     * @param string $type
+     */
+    public function setType($type)
+    {
+    	$this->attributes['type'] = $type;
     }    
 }
