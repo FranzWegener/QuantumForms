@@ -9,6 +9,15 @@ namespace QuantumForms\FormElements;
 class Radiobutton extends AbstractFormElement implements \Quantumforms\FormElementInterface
 {
     protected $options;
+    
+    /**
+     * Use name as identifying attribute by default, because id doesn't work on Radiobuttons
+     * @param string $name
+     */
+    public function __construct($name){
+    	parent::__construct($name);
+    	$this->setIdentifyingAttribute('name');
+    }
     /**
      * (non-PHPdoc)
      * @see \QuantumForms\FormElements\AbstractFormElement::render()

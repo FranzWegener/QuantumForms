@@ -166,8 +166,17 @@ class Form implements \QuantumForms\FormInterface
             $result = 'document.addEventListener("DOMContentLoaded", function() {';
         }
         foreach ($this->formElements as $formElement){
-            $result.= PHP_EOL.'document.getElementById("'.$formElement->getName().'").addEventListener("blur", function ()
-			{
+            if ($formElement->getIdentifyingAttribute() == 'id'){
+                    $result.= PHP_EOL.'document.getElementById("'.$formElement->getName().'").addEventListener("blur", function ()';
+            } else {
+                if ($this->jqueryAvailable){
+                    $result.= PHP_EOL.'$(\'['.$formElement->getIdentifyingAttribute().'="'.$formElement->getName().'"]).addEventListener("blur", function ()';
+                }else{
+                    $result.= PHP_EOL.'document.querySelectorAll(\'['.$formElement->getIdentifyingAttribute().'="'.$formElement->getName().'"]).addEventListener("blur", function ()';                	
+                }
+            }
+            
+			$result.= '{
 				errors = [];';
             $validators = $formElement->getValidators();
             foreach ($validators as $validatorName => $validator){

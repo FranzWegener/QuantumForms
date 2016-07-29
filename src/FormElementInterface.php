@@ -82,4 +82,16 @@ interface FormElementInterface
      * @return string
      */
     public function render();
+    
+    /**
+     * Set the tag attribute used to identify the element by the JS Validator
+     * @param string $string
+     * @return $this
+     */
+    public function setIdentifyingAttribute($string);
+    /**
+     * Get the tag attribute used to identify the element by the JS Validator 
+     * @return $string
+     */
+    public function getIdentifyingAttribute();
 }
