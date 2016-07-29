@@ -66,6 +66,7 @@ Inject the form-object into your view
 Add FormElement
 ===============
 Add file with new FormElement name to the /src/FormElements directory, e.g. src/FormElements/Example
+```html
 <?php
 namespace QuantumForms\FormElements;
 
@@ -84,11 +85,13 @@ class Example extends AbstractFormElement implements \Quantumforms\FormElementIn
     	return $this->htmlBefore.'<example '.$attributes.'/>'.$this->htmlAfter;
     }    
 }
+```
 Add a test for your FormElement to /tests/FormElements/Example.php
 
 Add Javascript Method to be invoked on a form error
 ===================================================
 Add file with JsErrorNotifier name to the /src/JsErrorNotifiers directory, e.g. src/JsErrorNotifiers/Example
+```html
 <?php
 namespace QuantumForms\JsErrorNotifiers;
 
@@ -104,13 +107,13 @@ class Example implements \QuantumForms\JsErrorNotifierInterface
     	    }';
 	}
 } 
-
+```
 Add a test for your JsErrorNotifier to /tests/JsErrorNotifiers/Example.php
 
 Add Validator
 =============
 Add file with validator name to the /src/Validators directory, e.g. src/Validators/Example
-
+```html
 <?php
 namespace QuantumForms\Validators;
 
@@ -143,7 +146,7 @@ class Example extends AbstractValidator implements ValidatorInterface
     }
 
 }
-
+```
 Add a test for your Validator to /tests/Validators/Example.php
 
 Change the way the whole form is assembled
