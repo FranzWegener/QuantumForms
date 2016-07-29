@@ -57,7 +57,7 @@ class Select extends AbstractFormElement implements \Quantumforms\FormElementInt
     }
     /**
      * Set all options
-     * @param array $options Structure of $options must be [$valueTagName =>[\'text\' => User Readable option name, \'isSelected\'(optional) => bool, \'isDisabled\'(optional) => bool], \'label\'(optional) => string]], ...]
+     * @param array $options Structure of $options must be [$valueTagName =>[\'text\' => User Readable option name, \'isSelected\'(optional) => bool, \'isDisabled\'(optional) => bool, \'label\'(optional) => string]], ...]
      * @return $this
      */
     public function setOptions(array $options)
@@ -68,7 +68,7 @@ class Select extends AbstractFormElement implements \Quantumforms\FormElementInt
     }
     /**
      * Add array of options overwriting duplicates
-     * @param array $options Structure of $options must be [$valueTagName =>[\'text\' => User Readable option name, \'isSelected\'(optional) => bool, \'isDisabled\'(optional) => bool], \'label\'(optional) => string]], ...]
+     * @param array $options Structure of $options must be [$valueTagName =>[\'text\' => User Readable option name, \'isSelected\'(optional) => bool, \'isDisabled\'(optional) => bool, \'label\'(optional) => string]], ...]
      * @return \QuantumForms\FormElements\Select
      */
     public function addOptions(array $options)
@@ -86,12 +86,12 @@ class Select extends AbstractFormElement implements \Quantumforms\FormElementInt
     {
         foreach ($options as $optionValue => $option){
             if (is_string($optionValue)) throw new \Exception('The key of the $options array must be the option value tags.');
-            if (!isset($option['text'])) throw new \Exception ('Structure of $options must be [$valueTagName =>[\'text\' => User Readable option name, \'isSelected\'(optional) => bool, \'isDiabled\'(optional) => bool], \'label\'(optional) => string]], ...]');
+            if (!isset($option['text'])) throw new \Exception ('Structure of $options must be [$valueTagName =>[\'text\' => User Readable option name, \'isSelected\'(optional) => bool, \'isDiabled\'(optional) => bool, \'label\'(optional) => string]], ...]');
         }
     }
     /**
      * 
-     * @param unknown $bool
+     * @param boolean $bool
      */
     public function setMultipleSelect($bool)
     {
