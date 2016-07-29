@@ -18,7 +18,7 @@ Features
 
 Form definition
 ===============
-
+```html
 // instantiate the loader
 $quantumFormsRootPath = 'path-to-quantum-forms/src';
 
@@ -48,6 +48,7 @@ $form->addElement($nameElement);
 
 $submitElement = new Submit('submit');
 $form->addElement($submitElement);
+```
 
 Form Rendering
 ==============
