@@ -16,6 +16,9 @@ before_install:
 install:
   - travis_retry composer install
 
+before_script:
+- composer self-update -q
+- if [ -n "$GH_TOKEN" ]; then composer config github-oauth.github.com ${GH_TOKEN}; fi;
 script:
 - phpunit
 
