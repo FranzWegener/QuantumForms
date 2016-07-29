@@ -171,7 +171,7 @@ class Form implements \QuantumForms\FormInterface
 				errors = [];';
             $validators = $formElement->getValidators();
             foreach ($validators as $validatorName => $validator){
-            	$result.= PHP_EOL.'if (!'.Names::VALIDATOR_OBJECT.'.'.$validatorName.'(document.getElementById("'.$formElement->getName().'").value)) errors.push("'.$formElement->getErrorMessage().'");';
+            	$result.= PHP_EOL.'if (!'.Names::VALIDATOR_OBJECT.'.'.$validatorName.'(document.getElementById("'.$formElement->getName().'").value)) errors.push("'.$validator->getErrorMessage().'");';
             }
             $result.= 'if (errors.length>0) '.Names::VALIDATOR_ERROR_FUNCTION.'("'.$formElement->getName().'", "'.$validatorName.'", errors);});';
         }

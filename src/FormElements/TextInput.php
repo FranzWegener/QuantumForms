@@ -6,7 +6,7 @@ namespace QuantumForms\FormElements;
  * @author Franz Wegener
  *
  */
-class Input extends AbstractFormElement implements \Quantumforms\FormElementInterface
+class TextInput extends AbstractFormElement implements \Quantumforms\FormElementInterface
 {
     /**
      * Sets the name of the FormElement
