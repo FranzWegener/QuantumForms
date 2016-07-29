@@ -1,25 +1,25 @@
 <?php
-namespace QuantumForms;
-
 use QuantumForms\Forms\Form;
 use QuantumForms\JsErrorNotifiers\Alert;
 use QuantumForms\FormElements\Input;
 use QuantumForms\Validators\Integer;
 use QuantumForms\Validators\Alphanumeric;
+use QuantumForms\Autoloader;
+use QuantumForms\FormElements\Submit;
 
 /**
  * Example Use of QuantumForms
  */
 
 // instantiate the loader
-require_once 'Autoloader.php';
-$loader = new Autoloader;
+require_once 'src/Autoloader.php';
+$loader = new Autoloader();
 
 // register the autoloader
 $loader->register();
 
 // register the base directories for the namespace prefix
-$loader->addNamespace('QuantumForms', __DIR__);
+$loader->addNamespace('QuantumForms', __DIR__.'/src');
 
 //create Form
 
@@ -32,6 +32,9 @@ $form->addElement($ageElement);
 $nameElement = new Input('name');
 $nameElement->setValidators([new Alphanumeric()]);
 $form->addElement($nameElement);
+
+$submitElement = new Submit('submit');
+$form->addElement($submitElement);
 
 echo '<html><head>';
 echo $form->renderJavascript();
