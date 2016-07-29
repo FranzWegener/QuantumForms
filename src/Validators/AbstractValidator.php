@@ -11,7 +11,6 @@ use QuantumForms\ValidatorInterface;
 abstract class AbstractValidator implements ValidatorInterface
 {
 	protected $errorMessage = 'Error in Input';
-	protected $errorCssClass = 'error';
 
 	/**
 	 * Standard is "Error in Input"
@@ -23,12 +22,12 @@ abstract class AbstractValidator implements ValidatorInterface
 	}
 	
 	/**
-	 * Standard is "error"
-	 * @param string $cssClassName
+	 * Returns the error message
+	 * @return string
 	 */
-	public function setErrorCssClass($cssClassName)
+	public function getErrorMessage()
 	{
-		$this->errorCssClass = $cssClassName;
+		return $this->errorMessage;
 	}
 	/**
 	 * Returns the name of the Validator (for uniqueness on client side)

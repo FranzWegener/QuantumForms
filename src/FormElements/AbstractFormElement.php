@@ -17,7 +17,6 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
     protected $attributes = [];
     protected $htmlBefore = '';
     protected $htmlAfter = '';
-    protected $javascriptValidationEnabled = true;
     protected $validators = [];
     
     public function __construct($name)
@@ -55,11 +54,6 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
         return $this;
     }
     
-    public function javascriptValidationEnabled($boolean)
-    {
-        $this->javascriptValidationEnabled = $boolean;
-        return $this;	
-    }
     public function addValidator(ValidatorInterface $validator)
     {
     	$this->validators[$validator->getName()] = $validator;

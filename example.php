@@ -22,7 +22,6 @@ $loader->register();
 $loader->addNamespace('QuantumForms', __DIR__.'/src');
 
 //create Form
-
 $form = new Form('GET', '/', new Alert());
 
 $ageElement = new TextInput('age');
