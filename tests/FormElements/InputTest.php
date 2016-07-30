@@ -4,15 +4,14 @@ namespace QuantumForms\Tests\FormElements;
 use QuantumForms\FormElements\Input;
 use QuantumForms\Autoloader;
 
-require_once '../../src/Autoloader.php';
+require_once 'src/Autoloader.php';
 $loader = new Autoloader();
 
 // register the autoloader
 $loader->register();
 
 // register the base directories for the namespace prefix
-$loader->addNamespace('QuantumForms', __DIR__.'/../../src');
-
+$loader->addNamespace('QuantumForms', substr(__DIR__,0,strrpos(__DIR__, 'tests')).'/src');
 
 class InputTest extends \PHPUnit_Framework_TestCase
 {
