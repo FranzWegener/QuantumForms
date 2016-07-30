@@ -1,7 +1,7 @@
 <?php
 namespace QuantumForms\Tests\FormElements;
 
-use QuantumForms\FormElements\Input;
+use QuantumForms\FormElements\TextInput;
 use QuantumForms\Autoloader;
 
 require_once 'src/Autoloader.php';
@@ -25,7 +25,7 @@ class InputTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-    	$this->element = new Input('test');
+    	$this->element = new TextInput('test');
     }
     
     /**
@@ -39,7 +39,6 @@ class InputTest extends \PHPUnit_Framework_TestCase
      */
     public function testRendering()
     {
-        $this->element->setType('text');
         $html = $this->element->render();
         $this->standardAssertions($html);
         
