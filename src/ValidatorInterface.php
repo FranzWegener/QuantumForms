@@ -20,15 +20,15 @@ interface ValidatorInterface
     /**
      * Sets the error message in case of an error.
      * Standard is "Error in Input"
-     * @param unknown $message
+     * @param string $message
+     * @return $this
      */
     public function setErrorMessage($message);
     /**
-     * Sets the css class that the client validation should add in case of an error
-     * Standard is "error"
-     * @param string $cssClassName
+     * Returns the error message
+     * @return string $message
      */
-    public function setErrorCssClass($cssClassName);
+    public function getErrorMessage();
     
 	/**
 	 * Returns the name of the Validator (for uniqueness on client side)

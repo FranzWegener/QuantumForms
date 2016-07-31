@@ -107,6 +107,10 @@ class Form implements \QuantumForms\FormInterface
         $this->attributes[$name] = $value;
         return $this;
     }
+    /**
+     * (non-PHPdoc)
+     * @see \QuantumForms\FormInterface::setAttributes()
+     */
     public function setAttributes(array $attributes)
     {
         foreach ($attributes as $attributeName => $attributeValue){
@@ -162,14 +166,23 @@ class Form implements \QuantumForms\FormInterface
             $result = 'document.addEventListener("DOMContentLoaded", function() {';
         }
         foreach ($this->formElements as $formElement){
-            $result.= PHP_EOL.'document.getElementById("'.$formElement->getName().'").addEventListener("blur", function ()
-			{
-				result = true;';
+            if ($formElement->getIdentifyingAttribute() == 'id'){
+                    $result.= PHP_EOL.'document.getElementById("'.$formElement->getName().'").addEventListener("blur", function ()';
+            } else {
+                if ($this->jqueryAvailable){
+                    $result.= PHP_EOL.'$(\'['.$formElement->getIdentifyingAttribute().'="'.$formElement->getName().'"]).addEventListener("blur", function ()';
+                }else{
+                    $result.= PHP_EOL.'document.querySelectorAll(\'['.$formElement->getIdentifyingAttribute().'="'.$formElement->getName().'"]).addEventListener("blur", function ()';                	
+                }
+            }
+            
+			$result.= '{
+				errors = [];';
             $validators = $formElement->getValidators();
             foreach ($validators as $validatorName => $validator){
-            	$result.= PHP_EOL.'if (!'.Names::VALIDATOR_OBJECT.'.'.$validatorName.'(document.getElementById("'.$formElement->getName().'").value)) result = false;';
+            	$result.= PHP_EOL.'if (!'.Names::VALIDATOR_OBJECT.'.'.$validatorName.'(document.getElementById("'.$formElement->getName().'").value)) errors.push("'.$validator->getErrorMessage().'");';
             }
-            $result.= 'if (!result) '.Names::VALIDATOR_ERROR_FUNCTION.'("'.$formElement->getName().'", "'.$validatorName.'");});';
+            $result.= 'if (errors.length>0) '.Names::VALIDATOR_ERROR_FUNCTION.'("'.$formElement->getName().'", "'.$validatorName.'", errors);});';
         }
         return $result.'});'.PHP_EOL;
     }

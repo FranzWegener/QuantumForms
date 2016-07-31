@@ -6,11 +6,11 @@ namespace QuantumForms\FormElements;
  * @author Franz Wegener
  *
  */
-class Input extends AbstractFormElement implements \Quantumforms\FormElementInterface
+class Submit extends AbstractFormElement implements \Quantumforms\FormElementInterface
 {
     public function render()
     {
         $attributes = $this->getAttributesString();
-    	return $this->htmlBefore.'<input '.$attributes.'/>'.$this->htmlAfter;
-    }    
+        return $this->htmlBefore.'<input type="submit" '.$attributes.'/>'.$this->htmlAfter;
+    }
 }

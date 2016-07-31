@@ -8,7 +8,7 @@ namespace QuantumForms;
 interface JsErrorNotifierInterface
 {
     /**
-     * @return string 'validatorError(elementName, validatorName){ ... }' 
+     * @return string 'function (elementName, validatorName, errors) { ... }' 
      */
     public function getJsErrorNotifier();
 }

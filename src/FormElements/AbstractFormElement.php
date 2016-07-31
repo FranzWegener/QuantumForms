@@ -17,8 +17,8 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
     protected $attributes = [];
     protected $htmlBefore = '';
     protected $htmlAfter = '';
-    protected $javascriptValidationEnabled = true;
     protected $validators = [];
+    protected $identifyingAttribute = 'id';
     
     public function __construct($name)
     {
@@ -55,11 +55,6 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
         return $this;
     }
     
-    public function javascriptValidationEnabled($boolean)
-    {
-        $this->javascriptValidationEnabled = $boolean;
-        return $this;	
-    }
     public function addValidator(ValidatorInterface $validator)
     {
     	$this->validators[$validator->getName()] = $validator;
@@ -93,10 +88,19 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
     	}
     	return true;
     }
+    
+    /**
+     * (non-PHPdoc)
+     * @see \QuantumForms\FormElementInterface::getValidators()
+     */
     public function getValidators()
     {
     	return $this->validators;
     }
+    /**
+     * Returns all attributes as string
+     * @return string
+     */
     protected function getAttributesString()
     {
         $result = [];
@@ -105,5 +109,26 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
         }
         return implode(' ', $result);
     }
+    /**
+     * (non-PHPdoc)
+     * @see \QuantumForms\FormElementInterface::setIdentifyingAttribute()
+     */
+    public function setIdentifyingAttribute($string)
+    {
+        $this->identifyingAttribute = $string;    
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see \QuantumForms\FormElementInterface::getIdentifyingAttribute()
+     */
+    public function getIdentifyingAttribute()
+    {
+        return $this->identifyingAttribute;
+    }
+    /**
+     * (non-PHPdoc)
+     * @see \QuantumForms\FormElementInterface::render()
+     */
     abstract function render();
 }
