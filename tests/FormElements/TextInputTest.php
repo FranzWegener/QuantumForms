@@ -11,9 +11,9 @@ $loader = new Autoloader();
 $loader->register();
 
 // register the base directories for the namespace prefix
-$loader->addNamespace('QuantumForms', substr(__DIR__,0,strrpos(__DIR__, 'tests')).'/src');
+$loader->addNamespace('QuantumForms', 'src');
 
-class InputTest extends \PHPUnit_Framework_TestCase
+class TextInputTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var QuantumForms\FormElementInterface
