@@ -11,7 +11,7 @@ $loader = new Autoloader();
 $loader->register();
 
 // register the base directories for the namespace prefix
-$loader->addNamespace('QuantumForms', 'src');
+$loader->addNamespace('QuantumForms', substr(__DIR__,0,strrpos(__DIR__, 'tests')).'/src');
 
 class InputTest extends \PHPUnit_Framework_TestCase
 {
