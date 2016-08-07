@@ -57,7 +57,7 @@ class AlphanumericTest extends \PHPUnit_Framework_TestCase
     
     public function testJsFunctionIsFunction()
     {
-        $this->assertTrue((bool)preg_match('/function[\W]*?\([\W]*?input[\W]*?\)[\W]*?\{.*\}/s',$this->element->getJavascriptValidator()));
+        $this->assertTrue((bool)preg_match('/function[\W]*?\([\Wa-zA-Z0-9_]*?\)[\W]*?\{.*\}/s',$this->element->getJavascriptValidator()));
     }
     public function testGetName()
     {
