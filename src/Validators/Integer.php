@@ -16,7 +16,8 @@ class Integer extends AbstractValidator implements ValidatorInterface
      */
     public function validate($input)
     {
-        return is_integer($input);	
+        //return is_int($input);
+        return is_numeric($input) && preg_match('/^[0-9]+$/', (string)$input);	
     }
     
     /**

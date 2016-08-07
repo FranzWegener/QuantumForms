@@ -17,8 +17,8 @@ class Select extends AbstractFormElement implements \Quantumforms\FormElementInt
     public function render()
     {
         $attributes = $this->getAttributesString();
-        $select = '<select';
-        if ($this->isMultiSelect) $select.= 'multiple';
+        $select = '<select ';
+        if ($this->isMultiSelect) $select.= 'multiple ';
         $select.= $attributes.'>';
         $select.= $this->renderOptions(); 
         $select.='</select>';
@@ -36,7 +36,7 @@ class Select extends AbstractFormElement implements \Quantumforms\FormElementInt
         	if (isset($option['isSelected']) && $option['isSelected']) $options.= ' selected';
         	if (isset($option['isDisabled']) && $option['isDisabled']) $options.= ' disabled';
         	if (isset($option['label']) && $option['label']) $options.= ' label="'.$options['label'].'"';
-        	$option.= '>'.$option['text'].'</option>';
+        	$options.= '>'.$option['text'].'</option>';
         }
     	return $options;
     }

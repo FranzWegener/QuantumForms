@@ -16,7 +16,9 @@ class Alphanumeric extends AbstractValidator implements ValidatorInterface
      */
     public function validate($input)
     {
-        return ctype_alnum($input);	
+        if (is_integer($input)) $input = (string)$input;
+        if (!is_string($input)) return false;
+        return ctype_alnum((string)$input);	
     }
     
     /**
