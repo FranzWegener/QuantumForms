@@ -7,7 +7,7 @@ namespace QuantumForms\FormElements;
  */
 class Select extends AbstractFormElement implements \Quantumforms\FormElementInterface
 {
-    protected $options;
+    protected $options = [];
     protected $isMultiSelect = false;
     
     /**
@@ -17,8 +17,8 @@ class Select extends AbstractFormElement implements \Quantumforms\FormElementInt
     public function render()
     {
         $attributes = $this->getAttributesString();
-        $select = '<select';
-        if ($this->isMultiSelect) $select.= 'multiple';
+        $select = '<select ';
+        if ($this->isMultiSelect) $select.= 'multiple ';
         $select.= $attributes.'>';
         $select.= $this->renderOptions(); 
         $select.='</select>';
@@ -36,7 +36,7 @@ class Select extends AbstractFormElement implements \Quantumforms\FormElementInt
         	if (isset($option['isSelected']) && $option['isSelected']) $options.= ' selected';
         	if (isset($option['isDisabled']) && $option['isDisabled']) $options.= ' disabled';
         	if (isset($option['label']) && $option['label']) $options.= ' label="'.$options['label'].'"';
-        	$option.= '>'.$option['text'].'</option>';
+        	$options.= '>'.$option['text'].'</option>';
         }
     	return $options;
     }
@@ -85,7 +85,7 @@ class Select extends AbstractFormElement implements \Quantumforms\FormElementInt
     protected function checkOptionsArray(array $options)
     {
         foreach ($options as $optionValue => $option){
-            if (is_string($optionValue)) throw new \Exception('The key of the $options array must be the option value tags.');
+            if (!is_string($optionValue) && !is_integer($optionValue)) throw new \Exception('The key of the $options array must be the option value tags.');
             if (!isset($option['text'])) throw new \Exception ('Structure of $options must be [$valueTagName =>[\'text\' => User Readable option name, \'isSelected\'(optional) => bool, \'isDiabled\'(optional) => bool, \'label\'(optional) => string]], ...]');
         }
     }

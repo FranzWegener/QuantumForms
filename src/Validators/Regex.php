@@ -18,7 +18,9 @@ class Regex extends AbstractValidator implements ValidatorInterface
      */
     public function validate($input)
     {
-        return preg_match($this->regex, $input);	
+        if (is_integer($input)) $input = (string)$input;
+        if (!is_string($input)) return false;
+        return (bool)preg_match($this->regex, $input);	
     }
     
     /**
