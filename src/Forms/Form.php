@@ -97,6 +97,7 @@ class Form implements \QuantumForms\FormInterface
             while (isset($this->formElements[$id])) $id++; 
         }
     	$this->formElements[$id] = $element;
+    	return $this;
     }
     /**
      * (non-PHPdoc)
@@ -182,7 +183,7 @@ class Form implements \QuantumForms\FormInterface
             foreach ($validators as $validatorName => $validator){
             	$result.= PHP_EOL.'if (!'.Names::VALIDATOR_OBJECT.'.'.$validatorName.'(document.getElementById("'.$formElement->getName().'").value)) errors.push("'.$validator->getErrorMessage().'");';
             }
-            $result.= 'if (errors.length>0) '.Names::VALIDATOR_ERROR_FUNCTION.'("'.$formElement->getName().'", "'.$validatorName.'", errors);});';
+            if (count($validators)>0) $result.= 'if (errors.length>0) '.Names::VALIDATOR_ERROR_FUNCTION.'("'.$formElement->getName().'", "'.$validatorName.'", errors);});';
         }
         return $result.'});'.PHP_EOL;
     }
