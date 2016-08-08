@@ -3,6 +3,7 @@ namespace QuantumForms\Tests\FormElements;
 
 use QuantumForms\FormElements\Input;
 use QuantumForms\Autoloader;
+use QuantumForms\Validators\Integer;
 
 require_once 'src/Autoloader.php';
 $loader = new Autoloader();
@@ -42,14 +43,22 @@ class InputTest extends \PHPUnit_Framework_TestCase
         $this->element->setType('text');
         $html = $this->element->render();
         $this->standardAssertions($html);
-        
-        $this->element->addAttribute('data-attrib', 'attributeValue');
+        $this->assertTrue($this->element->setAttributes([]) instanceof Input);
+        $this->assertTrue($this->element->addAttribute('data-attrib', 'attributeValue') instanceof Input);
         $html = $this->element->render();
         $this->standardAssertions($html);
         $attributes = $this->extractAttributes($html);
         $this->assertTrue(isset($attributes['data-attrib']), 'data-attrib tag not set');
         $this->assertTrue(isset($attributes['data-attrib']) && $attributes['data-attrib'] == 'attributeValue');
         
+        $this->assertTrue($this->element->setHtmlBefore('<div>') instanceof Input);
+        $this->assertTrue($this->element->setHtmlafter('</div>') instanceof Input);
+        $html = $this->element->render();
+        $this->assertEquals(substr($html, 0, 5), '<div>');
+        $this->assertEquals(substr($html, -6), '</div>');
+        $this->assertTrue($this->element->setValidators([]) instanceof Input);
+        $this->assertTrue($this->element->addValidator(new Integer()) instanceof Input);
+        $this->assertEquals($this->element->validateInput('123'), true);
     }
     /**
      * 
