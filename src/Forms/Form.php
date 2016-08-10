@@ -42,6 +42,7 @@ class Form implements \QuantumForms\FormInterface
     public function setJqueryAvailable($boolean)
     {
         $this->jqueryAvailable = $boolean;
+        return $this;
     }
     /**
      * (non-PHPdoc)

@@ -31,7 +31,8 @@ class SelectTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->element = new Select('test');
-        $this->options = ['true' => ['text' => 'Pass', 'isSelected' => true], 'false' => ['text' => 'Fail'], 'unknown' => ['text' => 'unknown', 'isDisabled' => true]];
+        $this->options = ['true' => ['text' => 'Pass', 'isSelected' => true], 'false' => ['text' => 'Fail']];
+        
     }
 
     /**
@@ -46,15 +47,18 @@ class SelectTest extends \PHPUnit_Framework_TestCase
     public function testRendering()
     {
 
-        $this->element->setOptions($this->options);
+        $this->assertTrue($this->element->setOptions($this->options) instanceof Select);
+        $this->assertTrue($this->element->addOptions(['unknown' => ['text' => 'unknown', 'isDisabled' => true]]) instanceof Select);
+        $this->assertTrue($this->element->setMultipleSelect(false) instanceof Select);
+        
         $html = $this->element->render();
         
         //test select
         $this->assertEquals(substr($html, 0, 8), '<select ');
         $this->assertEquals(substr($html, -9), '</select>');
         //test options
-        $this->assertEquals(count($this->options), preg_match_all('/\<option .+?\<\/option\>/', $html, $matches));
-        $this->assertEquals(count($this->options), count($matches[0]));
+        $this->assertEquals(count($this->options)+1, preg_match_all('/\<option .+?\<\/option\>/', $html, $matches));
+        $this->assertEquals(count($this->options)+1, count($matches[0]));
         foreach ($matches[0] as $match){
             $this->standardAssertionsOptions($match);
         }

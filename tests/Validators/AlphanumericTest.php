@@ -3,6 +3,7 @@ namespace QuantumForms\Tests\Validators;
 
 use QuantumForms\Autoloader;
 use QuantumForms\Validators\Alphanumeric;
+use QuantumForms\ValidatorInterface;
 
 require_once 'src/Autoloader.php';
 $loader = new Autoloader();
@@ -62,5 +63,10 @@ class AlphanumericTest extends \PHPUnit_Framework_TestCase
     public function testGetName()
     {
     	$this->assertEquals($this->element->getName(), 'Alphanumeric');
+    }
+    public function testGettersSetters()
+    {
+        $this->assertTrue($this->element->setErrorMessage('Error') instanceof ValidatorInterface);
+        $this->assertEquals($this->element->getErrorMessage(), 'Error'); 
     }
 }

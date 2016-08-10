@@ -96,5 +96,6 @@ class Select extends AbstractFormElement implements \Quantumforms\FormElementInt
     public function setMultipleSelect($bool)
     {
         $this->isMultiSelect = $bool;
+        return $this;
     }
 }

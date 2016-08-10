@@ -14,11 +14,13 @@ abstract class AbstractValidator implements ValidatorInterface
 
 	/**
 	 * Standard is "Error in Input"
-	 * @param unknown $message
+	 * (non-PHPdoc)
+	 * @see \QuantumForms\ValidatorInterface::setErrorMessage()
 	 */
 	public function setErrorMessage($message)
 	{
-	   $this->errorMessage = $message;	
+	   $this->errorMessage = $message;
+	   return $this;	
 	}
 	
 	/**
