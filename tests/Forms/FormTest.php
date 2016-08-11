@@ -62,6 +62,8 @@ class FormTest extends \PHPUnit_Framework_TestCase
     public function testSetters()
     {
         $this->assertTrue($this->element->setJqueryAvailable(false) instanceof FormInterface);
+        $this->assertTrue($this->element->addAttribute('attr', 'attr-val') instanceof FormInterface);
+        $this->assertTrue($this->element->setAttributes(['attr1' => 'val1', 'attr2' => 'val2']) instanceof FormInterface);
     }
     public function testValidation()
     {

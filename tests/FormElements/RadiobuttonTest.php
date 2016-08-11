@@ -48,10 +48,11 @@ class RadiobuttonTest extends \PHPUnit_Framework_TestCase
         
         $this->element->setOptions($this->options);
         $this->assertTrue($this->element->addOption('unknown', 'unknown', false, true) instanceof Radiobutton);
+        $this->assertTrue($this->element->addOptions(['unknown1' => ['text' => 'unknown1', 'isDisabled' => true]]) instanceof Radiobutton);
         $html = $this->element->render();
         
-        $this->assertEquals(count($this->options)+1, preg_match_all('/\<input.+?\/\>/', $html, $matches));
-        $this->assertEquals(count($this->options)+1, count($matches[0]));
+        $this->assertEquals(count($this->options)+2, preg_match_all('/\<input.+?\/\>/', $html, $matches));
+        $this->assertEquals(count($this->options)+2, count($matches[0]));
         foreach ($matches[0] as $match){
             $this->standardAssertions($match);
         }

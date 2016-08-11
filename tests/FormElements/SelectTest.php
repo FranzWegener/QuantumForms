@@ -49,6 +49,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($this->element->setOptions($this->options) instanceof Select);
         $this->assertTrue($this->element->addOptions(['unknown' => ['text' => 'unknown', 'isDisabled' => true]]) instanceof Select);
+        $this->assertTrue($this->element->addOption('unknown1', 'unknown1', false, true) instanceof Select);
         $this->assertTrue($this->element->setMultipleSelect(false) instanceof Select);
         
         $html = $this->element->render();
@@ -57,8 +58,8 @@ class SelectTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(substr($html, 0, 8), '<select ');
         $this->assertEquals(substr($html, -9), '</select>');
         //test options
-        $this->assertEquals(count($this->options)+1, preg_match_all('/\<option .+?\<\/option\>/', $html, $matches));
-        $this->assertEquals(count($this->options)+1, count($matches[0]));
+        $this->assertEquals(count($this->options)+2, preg_match_all('/\<option .+?\<\/option\>/', $html, $matches));
+        $this->assertEquals(count($this->options)+2, count($matches[0]));
         foreach ($matches[0] as $match){
             $this->standardAssertionsOptions($match);
         }
