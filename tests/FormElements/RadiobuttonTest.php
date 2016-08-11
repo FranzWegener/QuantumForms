@@ -31,7 +31,7 @@ class RadiobuttonTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->element = new Radiobutton('test');
-        $this->options = ['true' => ['text' => 'Pass', 'isSelected' => true], 'false' => ['text' => 'Fail'], 'unknown' => ['text' => 'unknown', 'isDisabled' => true]];
+        $this->options = ['true' => ['text' => 'Pass', 'isSelected' => true], 'false' => ['text' => 'Fail']];
     }
 
     /**
@@ -47,10 +47,11 @@ class RadiobuttonTest extends \PHPUnit_Framework_TestCase
     {
         
         $this->element->setOptions($this->options);
+        $this->assertTrue($this->element->addOption('unknown', 'unknown', false, true) instanceof Radiobutton);
         $html = $this->element->render();
         
-        $this->assertEquals(count($this->options), preg_match_all('/\<input.+?\/\>/', $html, $matches));
-        $this->assertEquals(count($this->options), count($matches[0]));
+        $this->assertEquals(count($this->options)+1, preg_match_all('/\<input.+?\/\>/', $html, $matches));
+        $this->assertEquals(count($this->options)+1, count($matches[0]));
         foreach ($matches[0] as $match){
             $this->standardAssertions($match);
         }
