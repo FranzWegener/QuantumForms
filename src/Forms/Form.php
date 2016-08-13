@@ -30,7 +30,7 @@ class Form implements \QuantumForms\FormInterface
      */
     public function __construct($method, $action, JsErrorNotifierInterface $jsErrorNotifier)
     {    
-    	if (!is_string($method) || !is_String($action)) throw Exception('The parameters $method and $action of QuantumForms\FormInterface::__construct() must be strings.');
+    	if (!is_string($method) || !is_String($action)) throw new \Exception('The parameters $method and $action of QuantumForms\FormInterface::__construct() must be strings.');
     	$this->method = $method;
     	$this->action = $action;
     	$this->jsErrorNotifier = $jsErrorNotifier;

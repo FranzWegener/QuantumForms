@@ -46,7 +46,13 @@ class SelectTest extends \PHPUnit_Framework_TestCase
      */
     public function testRendering()
     {
-
+        try {
+            $this->element->addOptions(['unknown1' => ['isDisabled' => true]]);
+        } catch (\Exception $e) {
+        }
+        $this->assertTrue(isset($e));
+        $this->assertTrue($e instanceof \Exception);
+        
         $this->assertTrue($this->element->setOptions($this->options) instanceof Select);
         $this->assertTrue($this->element->addOptions(['unknown' => ['text' => 'unknown', 'isDisabled' => true]]) instanceof Select);
         $this->assertTrue($this->element->addOption('unknown1', 'unknown1', false, true) instanceof Select);

@@ -47,6 +47,12 @@ class RadiobuttonTest extends \PHPUnit_Framework_TestCase
     {
         
         $this->element->setOptions($this->options);
+        try {
+            $this->element->addOptions(['unknown1' => ['isDisabled' => true]]);
+        } catch (\Exception $e) {
+        }
+        $this->assertTrue(isset($e));
+        $this->assertTrue($e instanceof \Exception);
         $this->assertTrue($this->element->addOption('unknown', 'unknown', false, true) instanceof Radiobutton);
         $this->assertTrue($this->element->addOptions(['unknown1' => ['text' => 'unknown1', 'isDisabled' => true]]) instanceof Radiobutton);
         $html = $this->element->render();
