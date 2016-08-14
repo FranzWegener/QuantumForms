@@ -46,12 +46,6 @@ class SelectTest extends \PHPUnit_Framework_TestCase
      */
     public function testRendering()
     {
-        try {
-            $this->element->addOptions(['unknown1' => ['isDisabled' => true]]);
-        } catch (\Exception $e) {
-        }
-        $this->assertTrue(isset($e));
-        $this->assertTrue($e instanceof \Exception);
         
         $this->assertTrue($this->element->setOptions($this->options) instanceof Select);
         $this->assertTrue($this->element->addOptions(['unknown' => ['text' => 'unknown', 'isDisabled' => true]]) instanceof Select);
@@ -69,8 +63,14 @@ class SelectTest extends \PHPUnit_Framework_TestCase
         foreach ($matches[0] as $match){
             $this->standardAssertionsOptions($match);
         }
-
     }
+    
+    public function testException()
+    {
+        $this->setExpectedException(\Exception::class);
+        $this->element->addOptions(['unknown1' => ['isDisabled' => true]]);
+    }
+    
     /**
      * Run standard tests on rendered html of FormElement
      * @param string $html
@@ -84,6 +84,7 @@ class SelectTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(isset($attributes['value']), 'value isset');
 
     }
+    
     /**
      * Extracts attributes from input tag
      */
