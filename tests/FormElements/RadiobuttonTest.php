@@ -64,7 +64,11 @@ class RadiobuttonTest extends \PHPUnit_Framework_TestCase
      */
     public function testException()
     {
-        $this->setExpectedException(\Exception::class);
+    if (method_exists($this, 'setExpectedException')) {
+            $this->setExpectedException(\Exception::class);
+        } elseif (method_exists($this, 'expectException')) {
+            $this->expectException(\Exception::class);
+        }
         $this->element->addOptions(['unknown1' => ['isDisabled' => true]]);
     }
     /**
