@@ -60,13 +60,10 @@ class FormTest extends \PHPUnit_Framework_TestCase
     }
     public function testConstruct()
     {
-        try {
-            $this->element = new Form([], [], new Alert());
-        } catch (\Exception $e)
-        {}
-        $this->assertTrue(isset($e));
-        $this->assertTrue($e instanceof \Exception);
+        $this->setExpectedException(\Exception::class);
+        $this->element = new Form([], [], new Alert());
     }
+    
     public function testSetters()
     {
         $this->assertTrue($this->element->setJqueryAvailable(false) instanceof FormInterface);
