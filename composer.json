@@ -1,0 +1,7 @@
+{
+  "name": "franzwegener/quantum-forms",
+  "description": " QuantumForms is a customizable FormBuilder that uses the same validators in frontend and backend.",
+  "require": {
+    "php": "^5.3.3 || ^7.0",
+  }
+}
