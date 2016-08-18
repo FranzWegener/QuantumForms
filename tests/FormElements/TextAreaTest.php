@@ -6,6 +6,7 @@ use QuantumForms\FormElements\Input;
 use QuantumForms\Autoloader;
 use QuantumForms\FormElements\TextArea;
 use QuantumForms\Validators\Integer;
+use QuantumForms\Validators\IsEmpty;
 
 require_once 'src/Autoloader.php';
 $loader = new Autoloader();
@@ -59,9 +60,10 @@ class TextAreaTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(substr($html, 0, 5), '<div>');
         $this->assertEquals(substr($html, -6), '</div>');
         $this->assertTrue($this->element->setValidators([]) instanceof TextArea);
-        $this->assertTrue($this->element->addValidator(new Integer()) instanceof TextArea);
+        $this->assertTrue($this->element->addValidator(new IsEmpty()) instanceof TextArea);
 
-        $this->assertEquals($this->element->validateInput('123'), true);
+        $this->assertEquals($this->element->validateInput(''), true);
+        $this->assertEquals($this->element->validateInput('default'), false);
     }
 
     /**
