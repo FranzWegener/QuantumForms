@@ -1,0 +1,16 @@
+{
+  "name": "franzwegener/quantum-forms",
+  "description": "QuantumForms is a customizable FormBuilder that uses the same validators in frontend and backend.",
+  "authors": [
+    {
+      "name": "Franz Wegener"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.3.0"
+  },
+  "autoload": {
+    "psr-4": { "QuantumForms\\": "src" }
+  }
+}
