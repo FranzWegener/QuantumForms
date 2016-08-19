@@ -116,7 +116,8 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
      */
     public function setIdentifyingAttribute($string)
     {
-        $this->identifyingAttribute = $string;    
+        $this->identifyingAttribute = $string;
+        return $this;
     }
     
     /**

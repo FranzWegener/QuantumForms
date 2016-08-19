@@ -63,6 +63,15 @@ class InputTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->element->setValue('123') instanceof Input);
         $this->assertTrue(is_string($this->element->render()));
     }
+    public function testExceptions()
+    {
+        if (method_exists($this, 'setExpectedException')) {
+            $this->setExpectedException(\Exception::class);
+        } elseif (method_exists($this, 'expectException')) {
+            $this->expectException(\Exception::class);
+        }
+        $this->element->addValidators([new Integer(), 'Not implementing ValidatorInterface']);
+    }
     
     /**
      * 

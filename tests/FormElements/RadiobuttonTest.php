@@ -62,13 +62,17 @@ class RadiobuttonTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(count($this->options)+2, preg_match_all('/\<input.+?\/\>/', $html, $matches));
         $this->assertEquals(count($this->options)+2, count($matches[0]));
+
+        $this->assertTrue($this->element->addOptions(['unknown' => ['text' => 'unknown']]) instanceof Radiobutton);
+        $this->assertTrue($this->element->setValue('unknown') instanceof Radiobutton);
+        $this->assertTrue(is_string($this->element->render()));
     }
     /**
      * 
      */
     public function testException()
     {
-    if (method_exists($this, 'setExpectedException')) {
+        if (method_exists($this, 'setExpectedException')) {
             $this->setExpectedException(\Exception::class);
         } elseif (method_exists($this, 'expectException')) {
             $this->expectException(\Exception::class);

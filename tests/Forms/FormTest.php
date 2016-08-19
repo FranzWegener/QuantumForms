@@ -2,6 +2,7 @@
 namespace QuantumForms\Tests\Validators;
 
 use QuantumForms\Autoloader;
+use QuantumForms\FormElements\CustomHtml;
 use QuantumForms\Forms\Form;
 use QuantumForms\JsErrorNotifiers\Alert;
 use QuantumForms\FormElements\Input;
@@ -89,5 +90,13 @@ class FormTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_string($this->element->renderJavascript()));
         $this->assertTrue($this->element->populate(['test'=>123]) instanceof FormInterface);
         $this->assertTrue(is_string($this->element->renderHtml()));
+        $this->assertTrue($this->element->setJqueryAvailable(true) instanceof FormInterface);
+
+        $formElement = new CustomHtml('customHtml');
+        $this->assertTrue($formElement->setIdentifyingAttribute('name') instanceof CustomHtml);
+        $this->element->addElement($formElement, 'customHtml');
+        $this->assertTrue(is_string($this->element->renderJavascript()));
+        $this->assertTrue($this->element->setJqueryAvailable(false) instanceof FormInterface);
+        $this->assertTrue(is_string($this->element->renderJavascript()));
     }
 }
