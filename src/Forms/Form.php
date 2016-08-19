@@ -74,14 +74,14 @@ class Form implements \QuantumForms\FormInterface
     }
     /**
      * (non-PHPdoc)
-     * @see \QuantumForms\FormInterface::validateInput()
+     * @see \QuantumForms\FormInterface::validate()
      */
-    public function validateInput(array $request)
+    public function validate(array $request)
     {
         $errors = [];
         foreach ($this->formElements as $element)
         {
-        	$result = $element->validateInput($request[$element->getName()]);
+        	$result = $element->validate($request[$element->getName()]);
         	if (!$result) $errors[] = $element->getName();
         }
         if (!empty($errors)) return $errors;

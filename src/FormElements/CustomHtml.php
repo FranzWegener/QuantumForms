@@ -8,7 +8,16 @@ namespace QuantumForms\FormElements;
  */
 class CustomHtml extends AbstractFormElement implements \Quantumforms\FormElementInterface
 {
+    /**
+     * @var Contains the FormElement's custom HTML
+     */
     protected $formElement;
+
+    public function __construct($name)
+    {
+        parent::__construct($name);
+        $this->value = '';
+    }
 
     /**
      * {value} will be replaced with set value or empty string

@@ -71,11 +71,11 @@ interface FormElementInterface
     public function getValidators();
     
     /**
-     * This function is normally called by Form::validateInput() during backend form validation
+     * This function is normally called by Form::validate() during backend form validation
      * it validates against the Validators that are set
      * @return boolean
     */
-    public function validateInput($input);
+    public function validate($input);
     
     /**
      * Renders the HTML of the FormElement

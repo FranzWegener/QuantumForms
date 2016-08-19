@@ -62,8 +62,8 @@ class TextAreaTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->element->setValidators([]) instanceof TextArea);
         $this->assertTrue($this->element->addValidator(new IsEmpty()) instanceof TextArea);
 
-        $this->assertEquals($this->element->validateInput(''), true);
-        $this->assertEquals($this->element->validateInput('default'), false);
+        $this->assertEquals($this->element->validate(''), true);
+        $this->assertEquals($this->element->validate('default'), false);
     }
 
     /**

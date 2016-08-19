@@ -59,7 +59,9 @@ class InputTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->element->setValidators([]) instanceof Input);
         $this->assertTrue($this->element->addValidator(new Integer()) instanceof Input);
 
-        $this->assertEquals($this->element->validateInput('123'), true);
+        $this->assertEquals($this->element->validate('123'), true);
+        $this->assertTrue($this->element->setValue('123') instanceof Input);
+        $this->assertTrue(is_string($this->element->render()));
     }
     
     /**

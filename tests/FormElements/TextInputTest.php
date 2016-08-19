@@ -77,6 +77,10 @@ class TextInputTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(isset($attributes['type']), 'type isset');
         $this->assertTrue(isset($attributes['type']) && $attributes['type'] == 'text', 'type is wrong');
         $this->assertTrue($this->element->getName() == 'test', 'name is wrong');
+
+        $this->assertEquals($this->element->validate('123'), true);
+        $this->assertTrue($this->element->setValue('123') instanceof TextInput);
+        $this->assertTrue(is_string($this->element->render()));
     }
     
 }

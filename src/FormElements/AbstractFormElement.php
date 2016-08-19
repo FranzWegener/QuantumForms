@@ -78,11 +78,11 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
     }
     
     /**
-     * This function is normally called by Form::validateInput() during backend form validation
+     * This function is normally called by Form::validate() during backend form validation
      * it validates against the Validators that are set
      * @return boolean
     */
-    public function validateInput($input)
+    public function validate($input)
     {
     	foreach ($this->validators as $validator){
     		if (!$validator->validate($input)) return false;
