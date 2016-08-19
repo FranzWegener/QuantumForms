@@ -18,10 +18,10 @@ QuantumForms is an easily customizable FormBuilder that uses the same validators
 
 Installing QuantumForms is incredibly easy with composer
 ```bash
-composer install franzwegener/quantumforms
+composer require franzwegener/quantumforms
 ```
 
-Alternatively, if your project doesn't use `composer` (QuantumForm has 0 dependencies, so composer isn't required!), you can simply include and register the autoloader.
+Alternatively, if your project doesn't use `composer` (QuantumForms doesn't have any dependencies, so composer isn't required!), you can simply include and register the autoloader.
 
 ```php
 require_once $quantumFormsRootPath.'/Autoloader.php';
@@ -33,7 +33,7 @@ $loader->register();
 
 #### Form Definition
 
-1). Instantiate your QuantumForm
+1). Instantiate your form
 
 ```php
 $form = new Form('GET', '/desired/form/action.php', new Alert());
