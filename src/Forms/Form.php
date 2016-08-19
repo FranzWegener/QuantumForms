@@ -87,6 +87,20 @@ class Form implements \QuantumForms\FormInterface
         if (!empty($errors)) return $errors;
         return true;
     }
+
+    /**
+     * Populates the form fields with the key-value-pairs in the $formValues array
+     * @param array $formValues
+     * @return $this
+     */
+    public function populate(array $formValues)
+    {
+        /** @var FormElementInterface $element */
+        foreach ($this->formElements as $element) {
+            if (isset($formValues[$element->getName()])) $element->setValue($formValues[$element->getName()]);
+        }
+        return $this;
+    }
     /**
      * (non-PHPdoc)
      * @see \QuantumForms\FormInterface::addElement()

@@ -11,6 +11,7 @@ class Submit extends AbstractFormElement implements \Quantumforms\FormElementInt
     public function render()
     {
         $attributes = $this->getAttributesString();
+        if (!empty($this->value)) $attributes.= ' value="'.$this->value.'"';
         return $this->htmlBefore.'<input type="submit" '.$attributes.'/>'.$this->htmlAfter;
     }
 }

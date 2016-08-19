@@ -94,4 +94,11 @@ interface FormElementInterface
      * @return $string
      */
     public function getIdentifyingAttribute();
+
+    /**
+     * Set the value of the element for automatic population
+     * @param $value
+     * @return $this
+     */
+    public function setValue($value);
 }

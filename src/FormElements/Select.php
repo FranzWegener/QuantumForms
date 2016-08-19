@@ -33,13 +33,29 @@ class Select extends AbstractFormElement implements \Quantumforms\FormElementInt
         $options = '';
         foreach ($this->options as $optionValue => $option){
         	$options.= '<option value="'.$optionValue.'"';
-        	if (isset($option['isSelected']) && $option['isSelected']) $options.= ' selected';
+        	if ($this->isSelected($optionValue, $option)) $options.= ' selected';
         	if (isset($option['isDisabled']) && $option['isDisabled']) $options.= ' disabled';
         	if (isset($option['label']) && $option['label']) $options.= ' label="'.$options['label'].'"';
         	$options.= '>'.$option['text'].'</option>';
         }
     	return $options;
     }
+
+    /**
+     * @param $optionValue
+     * @param array $option
+     * @return bool
+     */
+    protected function isSelected($optionValue, array $option)
+    {
+        if (isset($option['isDisabled']) && $option['isDisabled']) return false;
+        if (!empty($this->value)){
+            if ($this->value !== $optionValue) return false;
+            return true;
+        }
+        return (isset($option['isSelected']) && $option['isSelected']);
+    }
+
     /**
      * Adds an option to the select
      * @param string $value

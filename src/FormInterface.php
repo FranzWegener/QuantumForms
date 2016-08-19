@@ -74,4 +74,10 @@ interface FormInterface
      * @return boolean
      */
     public function validateInput(array $request);
+    /**
+     * Populates the form fields with the key-value-pairs in the $formValues array
+     * @param array $formValues
+     * @return $this
+     */
+    public function populate(array $formValues);
 }

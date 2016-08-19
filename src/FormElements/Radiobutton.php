@@ -30,7 +30,7 @@ class Radiobutton extends AbstractFormElement implements \Quantumforms\FormEleme
         foreach ($this->options as $optionValue => $option){
             $options.= '<input type="radio" name="'.$this->getName().'" value="'.$optionValue.'"';
             if (!empty($attributeString)) $options.= ' '.$attributeString;
-            if (isset($option['isSelected']) && $option['isSelected']) $options.= ' checked="checked"';
+            if ($this->isSelected($optionValue, $option)) $options.= ' checked="checked"';
             if (isset($option['isDisabled']) && $option['isDisabled']) $options.= ' disabled="disabled"';
             $options.= '/> '.$option['text'].'<br/>';
         }
@@ -84,5 +84,20 @@ class Radiobutton extends AbstractFormElement implements \Quantumforms\FormEleme
         foreach ($options as $optionValue => $option){
             if (!isset($option['text'])) throw new \Exception ('Structure of $options must be [$valueTagName =>[\'text\' => User Readable option name, \'isSelected\'(optional) => bool, \'isDiabled\'(optional) => bool]], ...]');
         }
+    }
+
+    /**
+     * @param $optionValue
+     * @param array $option
+     * @return bool
+     */
+    protected function isSelected($optionValue, array $option)
+    {
+        if (isset($option['isDisabled']) && $option['isDisabled']) return false;
+        if (!empty($this->value)){
+            if ($this->value !== $optionValue) return false;
+            return true;
+        }
+        return (isset($option['isSelected']) && $option['isSelected']);
     }
 }
