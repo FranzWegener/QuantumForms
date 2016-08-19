@@ -74,18 +74,32 @@ class Form implements \QuantumForms\FormInterface
     }
     /**
      * (non-PHPdoc)
-     * @see \QuantumForms\FormInterface::validateInput()
+     * @see \QuantumForms\FormInterface::validate()
      */
-    public function validateInput(array $request)
+    public function validate(array $request)
     {
         $errors = [];
         foreach ($this->formElements as $element)
         {
-        	$result = $element->validateInput($request[$element->getName()]);
+        	$result = $element->validate($request[$element->getName()]);
         	if (!$result) $errors[] = $element->getName();
         }
         if (!empty($errors)) return $errors;
         return true;
+    }
+
+    /**
+     * Populates the form fields with the key-value-pairs in the $formValues array
+     * @param array $formValues
+     * @return $this
+     */
+    public function populate(array $formValues)
+    {
+        /** @var FormElementInterface $element */
+        foreach ($this->formElements as $element) {
+            if (isset($formValues[$element->getName()])) $element->setValue($formValues[$element->getName()]);
+        }
+        return $this;
     }
     /**
      * (non-PHPdoc)

@@ -24,6 +24,7 @@ class TextInput extends AbstractFormElement implements \Quantumforms\FormElement
     public function render()
     {
         $attributes = $this->getAttributesString();
+        if (!empty($this->value)) $attributes.= ' value="'.$this->value.'"';
     	return $this->htmlBefore.'<input '.$attributes.'/>'.$this->htmlAfter;
     }    
 }

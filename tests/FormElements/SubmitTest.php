@@ -77,6 +77,10 @@ class SubmitTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(isset($attributes['type']), 'type isset');
         $this->assertTrue(isset($attributes['type']) && $attributes['type'] == 'submit', 'type is wrong');
         $this->assertEquals($this->element->getName(), 'test');
+
+        $this->assertEquals($this->element->validate('123'), true);
+        $this->assertTrue($this->element->setValue('123') instanceof Submit);
+        $this->assertTrue(is_string($this->element->render()));
     }
 
 }

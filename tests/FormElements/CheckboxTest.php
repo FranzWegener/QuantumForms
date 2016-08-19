@@ -49,6 +49,9 @@ class CheckboxTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(isset($attributes['data-attrib']), 'data-attrib tag not set');
         $this->assertTrue(isset($attributes['data-attrib']) && $attributes['data-attrib'] == 'attributeValue');
 
+        $this->assertTrue($this->element->setValue(true) instanceof Checkbox);
+        $html = $this->element->render();
+        $this->standardAssertions($html);
     }
     /**
      *

@@ -63,6 +63,9 @@ class SelectTest extends \PHPUnit_Framework_TestCase
         foreach ($matches[0] as $match){
             $this->standardAssertionsOptions($match);
         }
+        $this->assertTrue($this->element->addOptions(['unknown' => ['text' => 'unknown']]) instanceof Select);
+        $this->assertTrue($this->element->setValue('unknown') instanceof Select);
+        $this->assertTrue(is_string($this->element->render()));
     }
     
     public function testException()

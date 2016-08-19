@@ -19,6 +19,7 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
     protected $htmlAfter = '';
     protected $validators = [];
     protected $identifyingAttribute = 'id';
+    protected $value;
     
     public function __construct($name)
     {
@@ -77,11 +78,11 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
     }
     
     /**
-     * This function is normally called by Form::validateInput() during backend form validation
+     * This function is normally called by Form::validate() during backend form validation
      * it validates against the Validators that are set
      * @return boolean
     */
-    public function validateInput($input)
+    public function validate($input)
     {
     	foreach ($this->validators as $validator){
     		if (!$validator->validate($input)) return false;
@@ -115,7 +116,8 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
      */
     public function setIdentifyingAttribute($string)
     {
-        $this->identifyingAttribute = $string;    
+        $this->identifyingAttribute = $string;
+        return $this;
     }
     
     /**
@@ -125,6 +127,16 @@ abstract class AbstractFormElement implements \QuantumForms\FormElementInterface
     public function getIdentifyingAttribute()
     {
         return $this->identifyingAttribute;
+    }
+
+    /**
+     * @param $value
+     * @return $this
+     */
+    public function setValue($value)
+    {
+        $this->value = $value;
+        return $this;
     }
     /**
      * (non-PHPdoc)

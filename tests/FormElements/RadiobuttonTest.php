@@ -16,7 +16,7 @@ $loader->addNamespace('QuantumForms', 'src');
 class RadiobuttonTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var QuantumForms\FormElementInterface
+     * @var FormElementInterface
      */
     public $element;
     /**
@@ -57,14 +57,22 @@ class RadiobuttonTest extends \PHPUnit_Framework_TestCase
         foreach ($matches[0] as $match){
             $this->standardAssertions($match);
         }
-        
+        $this->assertTrue($this->element->setValue('unknown') instanceof Radiobutton);
+        $html = $this->element->render();
+
+        $this->assertEquals(count($this->options)+2, preg_match_all('/\<input.+?\/\>/', $html, $matches));
+        $this->assertEquals(count($this->options)+2, count($matches[0]));
+
+        $this->assertTrue($this->element->addOptions(['unknown' => ['text' => 'unknown']]) instanceof Radiobutton);
+        $this->assertTrue($this->element->setValue('unknown') instanceof Radiobutton);
+        $this->assertTrue(is_string($this->element->render()));
     }
     /**
      * 
      */
     public function testException()
     {
-    if (method_exists($this, 'setExpectedException')) {
+        if (method_exists($this, 'setExpectedException')) {
             $this->setExpectedException(\Exception::class);
         } elseif (method_exists($this, 'expectException')) {
             $this->expectException(\Exception::class);

@@ -50,6 +50,10 @@ class CustomHtmlTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($html, $testPrefixedHtml.$testHtml.$testSuffixedHtml);
         $this->assertEquals($this->element->getName(), 'test');
 
+        $this->element->setHtml('<div>{value}</div>');
+        $this->assertTrue($this->element->setValue('123Test') instanceof CustomHtml);
+        $this->assertTrue(is_string($this->element->render()));
+        $this->assertTrue(strpos($this->element->render(), '123Test') !== false);
     }
     /**
      *
