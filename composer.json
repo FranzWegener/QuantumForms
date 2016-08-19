@@ -1,6 +1,9 @@
 {
   "name": "franzwegener/quantumforms",
   "description": "QuantumForms is a customizable FormBuilder that uses the same validators in frontend and backend.",
+  "keywords": ["forms","form-builder"],
+  "homepage": "https://github.com/FranzWegener/QuantumForms",
+  "license": "MIT",
   "authors": [
     {
       "name": "Franz Wegener"
