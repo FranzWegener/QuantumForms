@@ -84,6 +84,8 @@ class FormTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue($this->element->addElement($element, 'test') instanceof FormInterface);
         $this->assertTrue($this->element->addElement($element) instanceof FormInterface);
         $this->assertTrue($this->element->validate(['test'=>123])===true );
+        $this->assertTrue($this->element->validate([])!==true);
+        $this->assertTrue(is_array($this->element->validate([])));
         $this->assertTrue($this->element->setJqueryAvailable(false) instanceof FormInterface);
         $this->assertTrue(is_string($this->element->renderJavascript()));
         $this->assertTrue($this->element->setJqueryAvailable(true) instanceof FormInterface);

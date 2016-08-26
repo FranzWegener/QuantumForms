@@ -10,8 +10,14 @@ class Alert implements \QuantumForms\JsErrorNotifierInterface
 {
 	public function getJsErrorNotifier()
 	{
-	    return 'function (elementName, validatorName, errors){
-    	       alert(\'Input Error: \' + elementName + \' should be \' + validatorName);
-    	    }';
+	    return 'function (elementName, errors){
+	                var message = "There were validation errors: \n";
+            	    for (var validatorName in errors) {
+                        if (errors.hasOwnProperty(validatorName)) {
+                            message = message.concat("Element " + elementName + ", Validator " + validatorName + ": " + errors[validatorName] + " \n");
+                        }
+                    }
+    	            alert(message);
+    	        }';
 	}
 } 

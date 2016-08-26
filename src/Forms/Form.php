@@ -81,7 +81,7 @@ class Form implements \QuantumForms\FormInterface
         $errors = [];
         foreach ($this->formElements as $element)
         {
-        	$result = $element->validate($request[$element->getName()]);
+            $result = $element->validate(isset($request[$element->getName()]) ? $request[$element->getName()] : null);
         	if (!$result) $errors[] = $element->getName();
         }
         if (!empty($errors)) return $errors;
@@ -193,13 +193,13 @@ class Form implements \QuantumForms\FormInterface
             }
             
 			$result.= '{
-				errors = [];';
+				errors = new Object();';
             $validators = $formElement->getValidators();
             foreach ($validators as $validatorName => $validator){
-            	$result.= PHP_EOL.'if (!'.Names::VALIDATOR_OBJECT.'.'.$validatorName.'(document.getElementById("'.$formElement->getName().'").value)) errors.push("'.$validator->getErrorMessage().'");';
+            	$result.= PHP_EOL.'if (!'.Names::VALIDATOR_OBJECT.'.'.$validatorName.'(document.getElementById("'.$formElement->getName().'").value)) errors["'.$validatorName.'"] = "'.$validator->getErrorMessage().'";';
             }
             if (count($validators)>0) {
-                $result.= 'if (errors.length>0) '.Names::VALIDATOR_ERROR_FUNCTION.'("'.$formElement->getName().'", "'.$validatorName.'", errors);'.PHP_EOL;
+                $result.= PHP_EOL.'if (Object.keys(errors).length>0) '.Names::VALIDATOR_ERROR_FUNCTION.'("'.$formElement->getName().'", errors);'.PHP_EOL;
             }
             $result.= '});'.PHP_EOL;
         }
