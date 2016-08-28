@@ -3,7 +3,7 @@ namespace QuantumForms\Tests\Validators;
 
 use QuantumForms\Autoloader;
 use QuantumForms\FormElementInterface;
-use QuantumForms\Validators\IsNotEmpty;
+use QuantumForms\Validators\NotEmpty;
 
 require_once 'src/Autoloader.php';
 $loader = new Autoloader();
@@ -14,7 +14,7 @@ $loader->register();
 // register the base directories for the namespace prefix
 $loader->addNamespace('QuantumForms', 'src');
 
-class IsNotEmptyTest extends \PHPUnit_Framework_TestCase
+class NotEmptyTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var FormElementInterface
@@ -31,7 +31,7 @@ class IsNotEmptyTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->element = new IsNotEmpty();
+        $this->element = new NotEmpty();
     }
 
     /**
@@ -65,6 +65,6 @@ class IsNotEmptyTest extends \PHPUnit_Framework_TestCase
     }
     public function testGetName()
     {
-        $this->assertTrue((bool)preg_match('/^IsNotEmpty+$/', $this->element->getName()));
+        $this->assertTrue((bool)preg_match('/^NotEmpty+$/', $this->element->getName()));
     }
 }
